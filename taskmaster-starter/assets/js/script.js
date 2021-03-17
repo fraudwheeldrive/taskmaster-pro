@@ -205,6 +205,11 @@ $(".list-group").on("click", "span", function() {
     .val(date);
   $(this).replaceWith(dateInput);
 
+  // enable jquery ui datepicker 
+  dateInput.datepicker({
+    minDate: 1
+  });
+
   // automatically bring up the calendar
   dateInput.trigger("focus");
 });
@@ -241,6 +246,10 @@ $("#remove-tasks").on("click", function() {
   }
   console.log(tasks);
   saveTasks();
+});
+
+$("#modalDueDate").datepicker({
+  minDate: 1
 });
 
 // load tasks for the first time
