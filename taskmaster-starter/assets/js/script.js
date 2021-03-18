@@ -165,7 +165,7 @@ $(".list-group").on("click", "p", function() {
 });
 
 // editable field was un-focused
-$(".list-group").on("blur", "textarea", function() {
+$(".list-group").on("change", "input[type='text']", function() {
   // get current value of textarea
   var text = $(this).val();
 
@@ -207,7 +207,11 @@ $(".list-group").on("click", "span", function() {
 
   // enable jquery ui datepicker 
   dateInput.datepicker({
-    minDate: 1
+    minDate: 1,
+    onClose: function () {
+      //when calendar is closed, force a "change" even on the date 'dateInput'
+    $(this).trigger("change");
+  }
   });
 
   // automatically bring up the calendar
@@ -248,6 +252,8 @@ $("#remove-tasks").on("click", function() {
   saveTasks();
 });
 
+
+//enable jquery ui datepicker 
 $("#modalDueDate").datepicker({
   minDate: 1
 });
